@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Proporções em Ligações Químicas</title>
+</head>
+<body>
+    <h1>Cálculo de Proporções em Ligações Químicas</h1>
+    <h2>Ligações Iônicas</h2>
+    <label for="eletronsMetal">Elétrons que o metal precisa perder:</label>
+    <input type="number" id="eletronsMetal" placeholder="Ex: 1" required>
+    
+    <label for="eletronsAmetal">Elétrons que o ametal precisa ganhar:</label>
+    <input type="number" id="eletronsAmetal" placeholder="Ex: 1" required>
+    
+    <button id="calcularIonica">Calcular Fórmula Iônica</button>
+    <p id="resultadoIonica"></p>
+    <h2>Ligações Covalentes</h2>
+    <label for="ligacoesAtomos">Ligaçōes que o átomo pode formar:</label>
+    <input type="number" id="ligacoesAtomos" placeholder="Ex: 2" required>
+    
+    <label for="ligacoesOutro">Ligações do outro átomo:</label>
+    <input type="number" id="ligacoesOutro" placeholder="Ex: 1" required>
+    
+    <button id="calcularCovalente">Calcular Fórmula Covalente</button>
+    <p id="resultadoCovalente"></p>
+    <script>
+        document.getElementById("calcularIonica").onclick = function() {
+            const eletronsMetal = parseInt(document.getElementById("eletronsMetal").value);
+            const eletronsAmetal = parseInt(document.getElementById("eletronsAmetal").value);
+            if (isNaN(eletronsMetal) || isNaN(eletronsAmetal) || eletronsMetal <= 0 || eletronsAmetal <= 0) {
+                document.getElementById("resultadoIonica").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            // Cálculo da fórmula iônica
+            const metalRatio = eletronsAmetal; // Na⁺ precisa perder
+            const ametalRatio = eletronsMetal; // Cl⁻ precisa ganhar
+            document.getElementById("resultadoIonica").innerHTML = `Fórmula iônica: M<sub>${metalRatio}</sub>A<sub>${amatelRatio}</sub>`;
+        };
+        document.getElementById("calcularCovalente").onclick = function() {
+            const ligacoesAtomos = parseInt(document.getElementById("ligacoesAtomos").value);
+            const ligacoesOutro = parseInt(document.getElementById("ligacoesOutro").value);
+            if (isNaN(ligacoesAtomos) || isNaN(ligacoesOutro) || ligacoesAtomos <= 0 || ligacoesOutro <= 0) {
+                document.getElementById("resultadoCovalente").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            // Cálculo da fórmula covalente
+            const atomos1 = ligacoesOutro;
+            const atomos2 = ligacoesAtomos / ligacoesOutro;
+            document.getElementById("resultadoCovalente").innerHTML = `Fórmula molecular: A<sub>${atomos2}</sub>B<sub>${atomos1}</sub> (2 átomos de B para 1 de A)`;
+        };
+    </script>
+</body>
+</html>

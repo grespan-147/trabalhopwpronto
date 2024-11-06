@@ -1,0 +1,21 @@
+.grid-item {
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+.co div{
+    background-color: red;
+    padding: 1rem;
+}z  
+.co div:nth-child(even){
+    background-color: green;
+}
+.co{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    grid-gap: 60px;
+}

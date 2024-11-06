@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composição de Metal e Ametal</title>
+</head>
+<body>
+    <h1>Composição de Metal e Ametal em uma Liga</h1>
+    <label for="percentualMetal">Percentual de Metal (%):</label>
+    <input type="number" id="percentualMetal" placeholder="Digite o percentual de metal" required>
+    <label for="percentualAmetal">Percentual de Ametal (%):</label>
+    <input type="number" id="percentualAmetal" placeholder="Digite o percentual de ametal" required>
+    <button id="verificarComposicao">Verificar Composição</button>
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+    <script>
+        document.getElementById("verificarComposicao").onclick = function() {
+            const percentualMetal = parseFloat(document.getElementById("percentualMetal").value);
+            const percentualAmetal = parseFloat(document.getElementById("percentualAmetal").value);
+            if (isNaN(percentualMetal) || isNaN(percentualAmetal) || percentualMetal < 0 || percentualAmetal < 0) {
+                document.getElementById("resultado").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            const soma = percentualMetal + percentualAmetal;
+            if (soma !== 100) {
+                document.getElementById("resultado").innerHTML = "A soma das porcentagens deve ser igual a 100%.";
+            } else {
+                if (percentualMetal > 50) {
+                    document.getElementById("resultado").innerHTML = "A liga é predominantemente metálica.";
+                } else {
+                    document.getElementById("resultado").innerHTML = "A liga é predominantemente ametálica.";
+                }
+            }
+        };
+    </script>
+</body>
+</html>

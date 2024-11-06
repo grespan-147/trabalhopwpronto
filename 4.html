@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Gasto de Combustível</title>
+</head>
+<body>
+    <h1>Cálculo de Gasto de Combustível</h1>
+    <label for="quilometragem">Quilometragem percorrida (km):</label>
+    <input type="number" id="quilometragem" placeholder="Digite a quilometragem" required>
+    
+    <label for="valorCombustivel">Valor do combustível (R$ por litro):</label>
+    <input type="number" id="valorCombustivel" placeholder="Digite o valor do combustível" required>
+    
+    <button id="calcular">Calcular Gasto</button>
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+    <script>
+        document.getElementById("calcular").onclick = function() {
+            const quilometragem = parseFloat(document.getElementById("quilometragem").value);
+            const valorCombustivel = parseFloat(document.getElementById("valorCombustivel").value);
+            const consumo = 8; // km por litro
+            
+            if (isNaN(quilometragem) || isNaN(valorCombustivel) || quilometragem <= 0 || valorCombustivel <= 0) {
+                document.getElementById("resultado").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            const litrosConsumidos = quilometragem / consumo;
+            const gastoTotal = litrosConsumidos * valorCombustivel;
+            document.getElementById("resultado").innerHTML = `Gasto total de combustível: R$ ${gastoTotal.toFixed(2)}`;
+        };
+    </script>
+</body>
+</html>

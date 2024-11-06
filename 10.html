@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores e Análise</title>
+</head>
+<body>
+    <h1>Insira N Valores</h1>
+    
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" placeholder="Digite um valor">
+    <button id="adicionar">Adicionar</button>
+    
+    <h2>Valores Inseridos</h2>
+    <ul id="listaValores"></ul>
+    <button id="mostrarTodos">Mostrar Todos os Valores</button>
+    <button id="maiorValor">Maior Valor</button>
+    <button id="menorValor">Menor Valor</button>
+    <h2>Resultado</h2>
+    <p id="resultado"></p>
+    <script>
+        const valores = [];
+        document.getElementById("adicionar").onclick = function() {
+            const valorInput = document.getElementById("valor").value;
+            const valor = parseFloat(valorInput);
+            if (isNaN(valor)) {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+            valores.push(valor);
+            document.getElementById("valor").value = ""; // Limpa o campo
+            atualizarListaValores();
+        };
+        function atualizarListaValores() {
+            const lista = document.getElementById("listaValores");
+            lista.innerHTML = "";
+            valores.forEach((v) => {
+                const item = document.createElement("li");
+                item.textContent = v;
+                lista.appendChild(item);
+            });
+        }
+        document.getElementById("mostrarTodos").onclick = function() {
+            if (valores.length === 0) {
+                document.getElementById("resultado").innerHTML = "Nenhum valor inserido.";
+            } else {
+                document.getElementById("resultado").innerHTML = `Valores: ${valores.join(", ")}`;
+            }
+        };
+        document.getElementById("maiorValor").onclick = function() {
+            if (valores.length === 0) {
+                document.getElementById("resultado").innerHTML = "Nenhum valor inserido.";
+            } else {
+                const maior = Math.max(...valores);
+                document.getElementById("resultado").innerHTML = `Maior valor: ${maior}`;
+            }
+        };
+        document.getElementById("menorValor").onclick = function() {
+            if (valores.length === 0) {
+                document.getElementById("resultado").innerHTML = "Nenhum valor inserido.";
+            } else {
+                const menor = Math.min(...valores);
+                document.getElementById("resultado").innerHTML = `Menor valor: ${menor}`;
+            }
+        };
+    </script>
+</body>
+</html>

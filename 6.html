@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Forças</title>
+</head>
+<body>
+    <h1>Cálculo de Forças</h1>
+    <h2>Situação 1: Força Resultante</h2>
+    <label for="massa">Massa do objeto (kg):</label>
+    <input type="number" id="massa" placeholder="Digite a massa" required>
+    
+    <label for="a1">Aceleração 1 (m/s²):</label>
+    <input type="number" id="a1" placeholder="Digite a aceleração 1" required>
+    
+    <label for="a2">Aceleração 2 (m/s²):</label>
+    <input type="number" id="a2" placeholder="Digite a aceleração 2" required>
+    
+    <button id="calcularForcaResultante">Calcular Força Resultante</button>
+    <p id="resultadoForcaResultante"></p>
+    <h2>Situação 2: Força de Ação e Reação</h2>
+    <label for="massa1">Massa do objeto 1 (kg):</label>
+    <input type="number" id="massa1" placeholder="Digite a massa do objeto 1" required>
+    
+    <label for="massa2">Massa do objeto 2 (kg):</label>
+    <input type="number" id="massa2" placeholder="Digite a massa do objeto 2" required>
+    
+    <label for="a1Reacao">Aceleração do objeto 1 (m/s²):</label>
+    <input type="number" id="a1Reacao" placeholder="Digite a aceleração do objeto 1" required>
+    
+    <label for="a2Reacao">Aceleração do objeto 2 (m/s²):</label>
+    <input type="number" id="a2Reacao" placeholder="Digite a aceleração do objeto 2" required>
+    
+    <button id="calcularForcaReacao">Calcular Força de Ação e Reação</button>
+    <p id="resultadoForcaReacao"></p>
+    <script>
+        document.getElementById("calcularForcaResultante").onclick = function() {
+            const massa = parseFloat(document.getElementById("massa").value);
+            const a1 = parseFloat(document.getElementById("a1").value);
+            const a2 = parseFloat(document.getElementById("a2").value);
+            
+            if (isNaN(massa) || isNaN(a1) || isNaN(a2) || massa <= 0) {
+                document.getElementById("resultadoForcaResultante").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            const aResultante = a1 - a2;
+            const forcaResultante = massa * aResultante;
+            document.getElementById("resultadoForcaResultante").innerHTML = `Força resultante: ${forcaResultante.toFixed(2)} N`;
+        };
+        document.getElementById("calcularForcaReacao").onclick = function() {
+            const massa1 = parseFloat(document.getElementById("massa1").value);
+            const massa2 = parseFloat(document.getElementById("massa2").value);
+            const a1Reacao = parseFloat(document.getElementById("a1Reacao").value);
+            const a2Reacao = parseFloat(document.getElementById("a2Reacao").value);
+            
+            if (isNaN(massa1) || isNaN(massa2) || isNaN(a1Reacao) || isNaN(a2Reacao) || massa1 <= 0 || massa2 <= 0) {
+                document.getElementById("resultadoForcaReacao").innerHTML = "Por favor, insira valores válidos.";
+                return;
+            }
+            const forcaAcao = massa1 * a1Reacao;
+            const forcaReacao = massa2 * a2Reacao;
+            document.getElementById("resultadoForcaReacao").innerHTML = `
+                Força de ação: ${forcaAcao.toFixed(2)} N <br>
+                Força de reação: ${forcaReacao.toFixed(2)} N (mesma magnitude, sentidos opostos)
+            `;
+        };
+    </script>
+</body>
+</html>

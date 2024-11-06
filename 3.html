@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Números</title>
+</head>
+<body>
+    <h1>Insira 10 Números Inteiros</h1>
+    <div id="inputs"></div>
+    <button id="calcular">Calcular</button>
+    <h2>Resultados</h2>
+    <p id="maioresMedia"></p>
+    <p id="menoresZero"></p>
+    <script>
+        const numeros = [];
+        const inputsDiv = document.getElementById("inputs");
+        // Cria 10 campos de entrada para os números
+        for (let i = 0; i < 10; i++) {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.placeholder = `Número ${i + 1}`;
+            inputsDiv.appendChild(input);
+            numeros.push(input);
+        }
+        document.getElementById("calcular").onclick = function() {
+            let soma = 0;
+            let contMenoresZero = 0;
+            // Lê os valores dos inputs e calcula a soma e a contagem de negativos
+            for (let i = 0; i < 10; i++) {
+                const valor = parseInt(numeros[i].value);
+                soma += valor;
+                if (valor < 0) {
+                    contMenoresZero++;
+                }
+            }
+            const media = soma / 10;
+            let maioresQueMedia = [];
+            // Encontra os números maiores que a média
+            for (let i = 0; i < 10; i++) {
+                const valor = parseInt(numeros[i].value);
+                if (valor > media) {
+                    maioresQueMedia.push(valor);
+                }
+            }
+            document.getElementById("maioresMedia").innerHTML = `Números maiores que a média (${media.toFixed(2)}): ${maioresQueMedia.join(", ") || "Nenhum"}`;
+            document.getElementById("menoresZero").innerHTML = `Números menores que zero: ${contMenoresZero}`;
+        };
+    </script>
+</body>
+</html>
